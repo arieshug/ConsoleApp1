@@ -1,4 +1,5 @@
-﻿namespace ConsoleApp1
+﻿
+namespace ConsoleApp1
 {
     class GiftBox
     {
@@ -9,30 +10,37 @@
     {
         static void Main(string[] args)
         {
-            GiftBox a = new GiftBox()
+            GiftBox addressA = GiftBoxMaker("A야 잘 지내지?", 110000);
+            GiftBox addressB = GiftBoxMaker("B야 잘 지내지?", 120000);
+            GiftBox addressC = GiftBoxMaker("C야 잘 지내지?", 130000);
+
+            GiftBox[] giftBoxes = new GiftBox[3];
+            giftBoxes[0] = addressA;
+            giftBoxes[1] = addressB;
+            giftBoxes[2] = addressC;
+            //giftBoxArr[3] = addressC; 런타임 에러
+
+            Console.WriteLine("giftBox Array Count : " + giftBoxes.Length);
+
+            //List~
+            List<GiftBox> giftBoxList = new List<GiftBox>();
+            giftBoxList.Add(addressA); //0
+            giftBoxList.Add(addressB); //1
+            giftBoxList.Add(addressC); //2
+
+            Console.WriteLine(giftBoxList[2].Letter);
+            Console.WriteLine("giftbox List Count : "+ giftBoxList.Count);
+        }
+
+        private static GiftBox GiftBoxMaker(string letter, int money)
+        {
+            GiftBox addressA = new GiftBox()
             {
-                Letter = "잘 지내지?",
-                Money = 100000
+                Letter = "A야 잘 지내지?",
+                Money = 110000
             };
-            Console.WriteLine("A 문자내용");
-            Console.WriteLine(a.Letter);
-            Console.WriteLine(a.Money);
-            GiftBox Friend = a;
 
-            Console.WriteLine("친구 문자내용");
-            Console.WriteLine(Friend.Letter);
-            Console.WriteLine(Friend.Money);
-
-            a.Letter = "어떻게 지내고 있어?";
-            a.Money = 150000;
-
-            Console.WriteLine("A 변경 이후 문자내용");
-            Console.WriteLine(a.Letter);
-            Console.WriteLine(a.Money);
-
-            Console.WriteLine("친구 문자 내용");
-            Console.WriteLine(Friend.Letter);
-            Console.WriteLine(Friend.Money);
+            return addressA;
         }
     }
 }
